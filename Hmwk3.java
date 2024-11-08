@@ -7,7 +7,6 @@ abstract class Book {
     private String author;
     private String ISBN;
     private boolean isCheckedOut;
-
     // Book INFO 2
     public Book(String title, String author, String ISBN) {
         this.title = title;
@@ -15,47 +14,37 @@ abstract class Book {
         this.ISBN = ISBN;
         this.isCheckedOut = false;
     }
-
     // Book check out
     public void checkOut() {
         this.isCheckedOut = true;
     }
-
     // Book Return
     public void returnBook() {
         this.isCheckedOut = false;
     }
-
-    // Describing the type of the book 
+    // Book details
     public abstract String describe();
-
     @Override
     public String toString() {
         return title + " by " + author + " (ISBN: " + ISBN + ") - " + (isCheckedOut ? "Checked out" : "Available");
     }
 }
-
-
-// Person checking out the book
+// Member
 abstract class Person {
     private String name;
     private String id;
-
     // Constructor
     public Person(String name, String id) {
         this.name = name;
         this.id = id;
     }
-
-    // Abstract method to describe the person type
+    // Member details
     public abstract String describe();
-
     @Override
     public String toString() {
         return name + " (ID: " + id + ")";
     }
 }
-
 // Fiction Books
 class Fiction extends Book {
     public Fiction(String title, String author, String ISBN) {
@@ -67,76 +56,63 @@ class Fiction extends Book {
         return "This is a fiction book.";
     }
 }
-
 // NonFiction Books
 class NonFiction extends Book {
     public NonFiction(String title, String author, String ISBN) {
         super(title, author, ISBN);
     }
-
     @Override
     public String describe() {
         return "This is a non-fiction book.";
     }
 }
-
 // Library Members
 class Member extends Person {
     public Member(String name, String id) {
         super(name, id);
     }
-
     @Override
     public String describe() {
         return "This is a library member.";
     }
 }
-
 // Library Staff
 class Staff extends Person {
     public Staff(String name, String id) {
         super(name, id);
     }
-
-    // New member of library staff
+    // Add library staff
     public void registerMember(Library library, Member member) {
         library.registerMember(member);
     }
-
-    // New book in the library
+    // Add book 
     public void registerBook(Library library, Book book) {
         library.addBook(book);
     }
-
     @Override
     public String describe() {
         return "This is library staff.";
     }
 }
-
 // Library Class
 class Library {
     private List<Book> books;
     private List<Member> members;
     private List<Staff> staff;
-
     // Constructor
     public Library() {
         this.books = new ArrayList<>();
         this.members = new ArrayList<>();
         this.staff = new ArrayList<>();
     }
-
-    // Add a new book to the library
-    public void addBook(Book book) {
+    // Add book
+public void addBook(Book book) {
         books.add(book);
     }
-
     // Register a new member to the library
     public void registerMember(Member member) {
         members.add(member);
     }
-
     // List all books
     public void listBooks() {
         System.out.println("Books in Library:");
@@ -144,7 +120,6 @@ class Library {
             System.out.println(book);
         }
     }
-
     // List all members
     public void listMembers() {
         System.out.println("Library Members:");
@@ -152,7 +127,6 @@ class Library {
             System.out.println(member);
         }
     }
-
     // List all staff
     public void listStaff() {
         System.out.println("Library Staff:");
@@ -160,15 +134,14 @@ class Library {
             System.out.println(staffMember);
         }
     }
-
-    // Method to add Staff
+    // Staff
     public void addStaff(Staff staffMember) {
         staff.add(staffMember);
     }
 }
 
 // Main Class (Displays ALL INFO)
-public class LibraryManagementSystem {
+public class Hmwk3 {
     public static void main(String[] args) {
 
         Library library = new Library();
